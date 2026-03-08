@@ -1,27 +1,6 @@
 {
-  "format_version": "1.21.11",
-  "credit": "Made with Blockbench",
-  "parent": "item/handheld",
-  "display": {
-    "thirdperson_righthand": {
-      "rotation": [0, 0, 130],
-      "translation": [-6.75, -2, -1],
-      "scale": [1.6, 1.6, 1]
-    },
-    "thirdperson_lefthand": {
-      "rotation": [0, 180, -130],
-      "translation": [-6.75, -2, -1],
-      "scale": [1.6, 1.6, 1]
-    },
-    "firstperson_righthand": {
-      "rotation": [0, 0, 110.25],
-      "translation": [-4.37, 3.7, 1.88],
-      "scale": [1.1, 1.1, 1]
-    },
-    "firstperson_lefthand": {
-      "rotation": [0, 180, -110.25],
-      "translation": [-4.37, 3.7, 1.88],
-      "scale": [1.1, 1.1, 1]
-    }
+  "parent": "attuned:item/tune_blocking",
+  "textures": {
+    "layer0": "attuned:item/valediction_handheld"
   }
 }
