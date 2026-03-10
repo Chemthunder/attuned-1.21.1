@@ -124,12 +124,12 @@ public class TuningForkItem extends Item implements ModelVaryingItem, CustomHitP
     }
 
     public Identifier getModel(ModelTransformationMode renderMode, ItemStack stack, @Nullable LivingEntity entity) {
-        String skinId = "";
+        String skinId;
 
         switch (getSkin(stack)) {
-            case 0 -> skinId = "tuning_fork";
             case 1 -> skinId = "skin/valediction";
             case 2 -> skinId = "skin/amarite";
+            default -> skinId = "tuning_fork";
         }
 
         if (entity != null) {
@@ -214,7 +214,7 @@ public class TuningForkItem extends Item implements ModelVaryingItem, CustomHitP
         SoundEvent toPlay = null;
 
         switch (getSkin(stack)) {
-            case 0 -> toPlay = SoundEvents.UI_BUTTON_CLICK.value();
+            case 0 -> toPlay = SoundEvents.BLOCK_ANCIENT_DEBRIS_BREAK;
             case 1 -> toPlay = SoundEvents.BLOCK_MANGROVE_ROOTS_BREAK;
             case 2 -> toPlay = SoundEvents.BLOCK_AMETHYST_BLOCK_BREAK;
         }
@@ -226,12 +226,20 @@ public class TuningForkItem extends Item implements ModelVaryingItem, CustomHitP
         return !miner.isCreative();
     }
 
+
+
     public void attuned$tuningForkParry(PlayerEntity player, LivingEntity source, World world, ItemStack stack) {
-        player.setVelocity(player.getRotationVec(0).multiply(-1.4f));
-        player.velocityModified = true;
+        var charges = stack.getOrDefault(AttunedDataComponents.CHARGES, 0);
 
-        player.stopUsingItem();
+        if (charges >= 3) {
+            player.setVelocity(player.getRotationVec(0).multiply(-1.4f));
+            player.velocityModified = true;
 
-        player.getItemCooldownManager().set(this, 90);
+            player.stopUsingItem();
+
+            player.getItemCooldownManager().set(this, 90);
+        } else {
+            stack.set(AttunedDataComponents.CHARGES, charges + 1);
+        }
     }
 }

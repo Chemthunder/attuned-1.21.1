@@ -1,6 +1,7 @@
 package net.chemthunder.attuned.impl;
 
 import net.chemthunder.attuned.impl.index.AttunedDataComponents;
+import net.chemthunder.attuned.impl.index.AttunedEnchantmentEffects;
 import net.chemthunder.attuned.impl.index.AttunedItems;
 import net.fabricmc.api.ModInitializer;
 
@@ -19,6 +20,7 @@ public class Attuned implements ModInitializer {
 	public void onInitialize() {
         AttunedItems.init();
         AttunedDataComponents.init();
+        AttunedEnchantmentEffects.init();
 
 		LOGGER.info("Hello Fabric world!");
 	}

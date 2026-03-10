@@ -1,3 +1,6 @@
 {
+  "attuned.enchantment.octave.desc": "Swaps the boost from blocking to a long-range dash in any direction.",
+  "attuned.octave": "Octave",
+  "block.attuned.ancillary": "Ancillary",
   "item.attuned.tuning_fork": "Tuning Fork"
 }

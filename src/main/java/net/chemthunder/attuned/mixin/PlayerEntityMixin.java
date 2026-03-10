@@ -21,9 +21,11 @@ public abstract class PlayerEntityMixin {
         if (stack.getItem() instanceof TuningForkItem item) {
             if (source.getAttacker() instanceof LivingEntity living) {
                 if (player.isUsingItem()) {
-                    cir.setReturnValue(false);
+                    if (!player.isCreative()) {
+                        cir.setReturnValue(false);
 
-                    item.attuned$tuningForkParry(player, living, player.getWorld(), stack);
+                        item.attuned$tuningForkParry(player, living, player.getWorld(), stack);
+                    }
                 }
             }
         }
