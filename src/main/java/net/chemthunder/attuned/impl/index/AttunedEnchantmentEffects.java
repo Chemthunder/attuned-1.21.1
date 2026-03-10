@@ -9,6 +9,7 @@ public interface AttunedEnchantmentEffects {
     EnchantmentEffectRegistrant ENCHANT_EFFECTS = new EnchantmentEffectRegistrant(Attuned.MOD_ID);
 
     ComponentType<Unit> SHOCKWAVE = ENCHANT_EFFECTS.register( "shockwave", builder -> builder.codec(Unit.CODEC));
+    ComponentType<Unit> SCREECH = ENCHANT_EFFECTS.register( "screech", builder -> builder.codec(Unit.CODEC));
 
     static void init() {
         //

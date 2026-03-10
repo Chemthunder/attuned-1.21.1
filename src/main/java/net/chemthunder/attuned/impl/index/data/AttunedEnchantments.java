@@ -15,6 +15,8 @@ import net.minecraft.registry.RegistryKeys;
 
 public interface AttunedEnchantments {
     RegistryKey<Enchantment> OCTAVE = create("octave");
+    RegistryKey<Enchantment> SHRILL = create("shrill");
+
 
     private static RegistryKey<Enchantment> create(String id) {
         return RegistryKey.of(RegistryKeys.ENCHANTMENT, Attuned.id(id));
@@ -37,6 +39,19 @@ public interface AttunedEnchantments {
                         ))
                         .addEffect(AttunedEnchantmentEffects.SHOCKWAVE)
                         .build(OCTAVE.getValue())
+        );
+
+        registerable.register(SHRILL, Enchantment.builder(Enchantment.definition(
+                                itemLookup.getOrThrow(AttunedItemTags.TUNING_FORKS),
+                                2,
+                                1,
+                                Enchantment.leveledCost(5, 0),
+                                Enchantment.leveledCost(17, 0),
+                                7,
+                                AttributeModifierSlot.MAINHAND
+                        ))
+                        .addEffect(AttunedEnchantmentEffects.SCREECH)
+                        .build(SHRILL.getValue())
         );
     }
 }

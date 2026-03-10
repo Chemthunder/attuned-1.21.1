@@ -1,34 +1,37 @@
 {
-	"schemaVersion": 1,
-	"id": "attuned",
-	"version": "${version}",
-	"name": "Attuned",
-	"description": "This is an example description! Tell everyone what your mod is about!",
-	"authors": [
-		"Me!"
-	],
-	"contact": {
-		"homepage": "https://fabricmc.net/",
-		"sources": "https://github.com/FabricMC/fabric-example-mod"
-	},
-	"license": "CC0-1.0",
-	"icon": "assets/attuned/icon.png",
-	"environment": "*",
-	"entrypoints": {
-		"main": [
-          "net.chemthunder.attuned.impl.Attuned"
-		],
-		"fabric-datagen": [
-          "net.chemthunder.attuned.data.AttunedDataGen"
-		]
-	},
-	"mixins": [
-		"attuned.mixins.json"
-	],
-	"depends": {
-		"fabricloader": ">=0.18.4",
-		"minecraft": "~1.21.1",
-		"java": ">=21",
-		"fabric-api": "*"
-	}
+  "schemaVersion": 1,
+  "id": "attuned",
+  "version": "${version}",
+  "name": "Attuned",
+  "description": "fun tuning fork mod",
+  "authors": [
+    "Chemthunder"
+  ],
+  "contributors": [
+    "KindlingCinder",
+    "AcoYT"
+  ],
+  "license": "CC0-1.0",
+  "icon": "assets/attuned/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "net.chemthunder.attuned.impl.Attuned"
+    ],
+    "client": [
+      "net.chemthunder.attuned.impl.AttunedClient"
+    ],
+    "fabric-datagen": [
+      "net.chemthunder.attuned.data.AttunedDataGen"
+    ]
+  },
+  "mixins": [
+    "attuned.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.15.11",
+    "minecraft": "~1.21.1",
+    "java": ">=21",
+    "fabric-api": "*"
+  }
 }

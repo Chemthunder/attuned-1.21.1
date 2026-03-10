@@ -9,12 +9,17 @@ import net.acoyt.acornlib.api.util.MiscUtils;
 import net.acoyt.acornlib.api.util.ParticleUtils;
 import net.acoyt.acornlib.impl.index.AcornParticles;
 import net.chemthunder.attuned.impl.Attuned;
+import net.chemthunder.attuned.impl.client.particle.ShockwaveParticleEffect;
 import net.chemthunder.attuned.impl.index.AttunedDataComponents;
+import net.chemthunder.attuned.impl.index.AttunedEnchantmentEffects;
+import net.chemthunder.attuned.impl.index.data.AttunedEnchantments;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.client.render.model.json.ModelTransformationMode;
 import net.minecraft.component.type.AttributeModifierSlot;
 import net.minecraft.component.type.AttributeModifiersComponent;
+import net.minecraft.enchantment.Enchantment;
+import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
@@ -24,6 +29,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUsageContext;
 import net.minecraft.particle.SimpleParticleType;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
@@ -33,6 +39,8 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Direction;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
@@ -52,8 +60,8 @@ public class TuningForkItem extends Item implements ModelVaryingItem, CustomHitP
     };
 
     public static final SimpleParticleType[] AMARITE_EFFECTS = new SimpleParticleType[]{
-            AcornParticles.MAGENTA_SWEEP,
-            AcornParticles.ALT_GOLD_SWEEP
+            AcornParticles.PURPLE_SWEEP,
+            AcornParticles.GOLD_SWEEP
     };
 
     public int startColor(ItemStack itemStack) {
@@ -226,20 +234,50 @@ public class TuningForkItem extends Item implements ModelVaryingItem, CustomHitP
         return !miner.isCreative();
     }
 
+    public int attuned$shockwaveColors(ItemStack stack) {
+        int returnedValue;
+
+        switch (getSkin(stack)) {
+            case 1 -> returnedValue = 0xFF7d153b;
+            case 2 -> returnedValue = 0xFFf5cf5d;
+            default -> returnedValue = 0xFFffffff;
+        }
+
+        return returnedValue;
+    }
+
+    public boolean hasOctave(ItemStack stack) {
+        return EnchantmentHelper.hasAnyEnchantmentsWith(stack, AttunedEnchantmentEffects.SHOCKWAVE);
+    }
+
 
 
     public void attuned$tuningForkParry(PlayerEntity player, LivingEntity source, World world, ItemStack stack) {
         var charges = stack.getOrDefault(AttunedDataComponents.CHARGES, 0);
+        if (world instanceof ServerWorld serverWorld) {
+            if (charges >= 3) {
+                Vec3d pos = player.getPos();
+                player.setVelocity(player.getRotationVec(0).multiply(-1.4f));
+                player.velocityModified = true;
 
-        if (charges >= 3) {
-            player.setVelocity(player.getRotationVec(0).multiply(-1.4f));
-            player.velocityModified = true;
+                player.stopUsingItem();
 
-            player.stopUsingItem();
+                player.getItemCooldownManager().set(this, 90);
 
-            player.getItemCooldownManager().set(this, 90);
-        } else {
-            stack.set(AttunedDataComponents.CHARGES, charges + 1);
+                serverWorld.spawnParticles(
+                        new ShockwaveParticleEffect(
+                                attuned$shockwaveColors(stack),
+                                3,
+                                Direction.Axis.Y
+                        ),
+                        pos.x, pos.y + 0.5f, pos.z,
+                        1,
+                        0.0, 0.0, 0.0,
+                        0.1
+                );
+            } else {
+                stack.set(AttunedDataComponents.CHARGES, charges + 1);
+            }
         }
     }
 }

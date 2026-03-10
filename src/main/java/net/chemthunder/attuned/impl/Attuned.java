@@ -1,8 +1,6 @@
 package net.chemthunder.attuned.impl;
 
-import net.chemthunder.attuned.impl.index.AttunedDataComponents;
-import net.chemthunder.attuned.impl.index.AttunedEnchantmentEffects;
-import net.chemthunder.attuned.impl.index.AttunedItems;
+import net.chemthunder.attuned.impl.index.*;
 import net.fabricmc.api.ModInitializer;
 
 import net.minecraft.util.Identifier;
@@ -21,6 +19,8 @@ public class Attuned implements ModInitializer {
         AttunedItems.init();
         AttunedDataComponents.init();
         AttunedEnchantmentEffects.init();
+        AttunedBlocks.init();
+        AttunedParticles.init();
 
 		LOGGER.info("Hello Fabric world!");
 	}

@@ -17,7 +17,10 @@ public class AttunedLangGen extends FabricLanguageProvider {
     public void generateTranslations(RegistryWrapper.WrapperLookup wrapperLookup, TranslationBuilder translationBuilder) {
         AttunedItems.ITEMS.registerLang(wrapperLookup, translationBuilder);
 
-        translationBuilder.add(AttunedEnchantments.OCTAVE.getValue(), "Octave");
-        translationBuilder.add("attuned.enchantment.octave.desc", "Swaps the boost from blocking to a long-range dash in any direction.");
+        translationBuilder.add("enchantment.attuned.octave", "Octave");
+        translationBuilder.add("enchantment.attuned.octave.desc", "Swaps the boost from blocking to a long-range dash in any direction.");
+
+        translationBuilder.add("enchantment.attuned.shrill", "Shrill");
+        translationBuilder.add("enchantment.attuned.shrill.desc", "Allows the user to release a large shockwave upon blocking a hit, deafening nearby enemies.");
     }
 }
