@@ -234,15 +234,6 @@ public class TuningForkItem extends Item implements ModelVaryingItem, CustomHitP
         return super.getName(stack).copy().withColor(0xFFa99797);
     }
 
-    public boolean postHit(ItemStack stack, LivingEntity target, LivingEntity attacker) {
-        var charges = AttunedDataComponents.CHARGES;
-
-        if (stack.getOrDefault(charges, 0) != TuningForkItem.maxCharges) {
-            stack.set(charges, stack.getOrDefault(charges, 0) + 1);
-        }
-        return super.postHit(stack, target, attacker);
-    }
-
     public static int getSkin(ItemStack stack) {
         return stack.getOrDefault(AttunedDataComponents.SKIN, 0);
     }
