@@ -74,6 +74,9 @@ dependencies {
 
     // trinkets
     modImplementation include("dev.emi:trinkets:${project.trinkets_version}")
+
+    // Enchantment
+    modImplementation ("maven.modrinth:enchancement:${project.enchancement_version}")
 }
 
 processResources {

@@ -13,6 +13,7 @@ import net.chemthunder.attuned.impl.client.particle.ShockwaveParticleEffect;
 import net.chemthunder.attuned.impl.index.AttunedDataComponents;
 import net.chemthunder.attuned.impl.index.AttunedEnchantmentEffects;
 import net.chemthunder.attuned.impl.index.data.AttunedEnchantments;
+import net.fabricmc.fabric.api.item.v1.EnchantingContext;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.client.render.model.json.ModelTransformationMode;
@@ -29,6 +30,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUsageContext;
 import net.minecraft.particle.SimpleParticleType;
+import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvent;
@@ -375,5 +377,13 @@ public class TuningForkItem extends Item implements ModelVaryingItem, CustomHitP
 
     public boolean allowComponentsUpdateAnimation(PlayerEntity player, Hand hand, ItemStack oldStack, ItemStack newStack) {
         return !ItemStack.areItemsEqual(oldStack, newStack);
+    }
+
+    public boolean isEnchantable(ItemStack stack) {
+        return true;
+    }
+
+    public boolean canBeEnchantedWith(ItemStack stack, RegistryEntry<Enchantment> enchantment, EnchantingContext context) {
+        return true;
     }
 }
