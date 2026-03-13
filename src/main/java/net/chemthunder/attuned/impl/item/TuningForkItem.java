@@ -9,6 +9,8 @@ import net.acoyt.acornlib.api.util.MiscUtils;
 import net.acoyt.acornlib.api.util.ParticleUtils;
 import net.acoyt.acornlib.impl.index.AcornParticles;
 import net.chemthunder.attuned.impl.Attuned;
+import net.chemthunder.attuned.impl.cca.entity.TuningForkShockwaveComponent;
+import net.chemthunder.attuned.impl.cca.entity.TuningForkSymphonyComponent;
 import net.chemthunder.attuned.impl.client.particle.ShockwaveParticleEffect;
 import net.chemthunder.attuned.impl.index.AttunedDataComponents;
 import net.chemthunder.attuned.impl.index.AttunedEnchantmentEffects;
@@ -116,6 +118,10 @@ public class TuningForkItem extends Item implements ModelVaryingItem, CustomHitP
 
     public boolean hasShrill(ItemStack stack) {
         return EnchantmentHelper.hasAnyEnchantmentsWith(stack, AttunedEnchantmentEffects.SCREECH);
+    }
+
+    public boolean hasSymphony(ItemStack stack) {
+        return EnchantmentHelper.hasAnyEnchantmentsWith(stack, AttunedEnchantmentEffects.DEATHSONG);
     }
 
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
@@ -295,6 +301,19 @@ public class TuningForkItem extends Item implements ModelVaryingItem, CustomHitP
         }
     }
 
+    public void attuned$tuningForkSymphony(PlayerEntity player, LivingEntity source, World world, ItemStack stack) {
+        player.setVelocity(0, 0, 0);
+        source.setVelocity(0, 0, 0);
+
+        if (source instanceof PlayerEntity targetPlayer) {
+            targetPlayer.getItemCooldownManager().set(targetPlayer.getMainHandStack().getItem(), 40);
+        }
+
+        TuningForkSymphonyComponent symphonyComponent = TuningForkSymphonyComponent.KEY.get(player);
+
+        symphonyComponent.setSaviorTicks(400);
+    }
+
     public int getItemBarStep(ItemStack stack) {
         return Math.round((float) stack.getOrDefault(AttunedDataComponents.HELD_TICKS, 0) / maxCharges * 13);
     }
@@ -354,6 +373,7 @@ public class TuningForkItem extends Item implements ModelVaryingItem, CustomHitP
                             }
 
                             player.playSoundToPlayer(attuned$specificSounds(stack),SoundCategory.PLAYERS, 1, (float) (1.0f + player.getRandom().nextGaussian() / 10.0f));
+                            TuningForkShockwaveComponent.KEY.get(player).setSaviorTicks(90);
                         }
                     }
                 }
@@ -370,3 +390,13 @@ public class TuningForkItem extends Item implements ModelVaryingItem, CustomHitP
         return true;
     }
 }
+
+// OCTAVE
+/*
+Upon use, negate fall damage for a few secs
+ */
+
+// SYMPHONY
+/*
+While blocking, if you die you get 10s in which you take ZERO damage. After this runs out, you will die instantly.
+ */

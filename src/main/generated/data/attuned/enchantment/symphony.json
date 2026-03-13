@@ -1,0 +1,23 @@
+{
+  "anvil_cost": 7,
+  "description": {
+    "translate": "enchantment.attuned.symphony"
+  },
+  "effects": {
+    "attuned:deathsong": {}
+  },
+  "max_cost": {
+    "base": 17,
+    "per_level_above_first": 0
+  },
+  "max_level": 1,
+  "min_cost": {
+    "base": 5,
+    "per_level_above_first": 0
+  },
+  "slots": [
+    "mainhand"
+  ],
+  "supported_items": "#attuned:tuning_forks",
+  "weight": 2
+}

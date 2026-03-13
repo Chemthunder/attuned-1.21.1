@@ -5,6 +5,7 @@
   "plugin": "net.chemthunder.attuned.impl.util.AttunedMixinPlugin",
   "mixins": [
     "AxeItemMixin",
+    "LivingEntityMixin",
     "PlayerEntityMixin",
     "compat.enchancement.EnchantingTableScreenHandlerMixin"
   ],
@@ -16,6 +17,7 @@
   },
   "client": [
     "client.AbstractSoundInstanceMixin",
+    "client.InGameHudMixin",
     "client.PlayerEntityRendererMixin"
   ]
 }

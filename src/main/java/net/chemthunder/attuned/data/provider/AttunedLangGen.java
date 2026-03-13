@@ -2,8 +2,11 @@ package net.chemthunder.attuned.data.provider;
 
 import net.chemthunder.attuned.impl.index.AttunedItems;
 import net.chemthunder.attuned.impl.index.AttunedStatusEffects;
+import net.chemthunder.attuned.impl.index.data.AttunedDamageTypes;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricLanguageProvider;
+import net.minecraft.entity.damage.DamageType;
+import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryWrapper;
 
 import java.util.concurrent.CompletableFuture;
@@ -22,5 +25,22 @@ public class AttunedLangGen extends FabricLanguageProvider {
 
         translationBuilder.add("enchantment.attuned.shrill", "Shrill");
         translationBuilder.add("enchantment.attuned.shrill.desc", "Allows the user to release a large shockwave upon blocking a hit, deafening nearby enemies.");
+
+        translationBuilder.add("enchantment.attuned.symphony", "Symphony");
+        translationBuilder.add("enchantment.attuned.symphony.desc", "If the user dies while blocking, they will be kept alive for ten extra seconds. Upon running out of time, they will instantly die.");
+
+        registerDamageType(translationBuilder,
+                AttunedDamageTypes.MAGNUM_OPUS,
+                "%1$s finished their magnum opus",
+                "%1$s finished their magnum opus whilst fighting %2$s wielding %3$s",
+                "%1$s finished their magnum opus whilst fighting %2$s"
+        );
+    }
+
+    public void registerDamageType(TranslationBuilder builder, RegistryKey<DamageType> registryKey, String normal, String item, String player) {
+        String key = "death.attack." + registryKey.getValue().getPath();
+        builder.add(key, normal);
+        builder.add(key + ".item", item);
+        builder.add(key + ".player", player);
     }
 }

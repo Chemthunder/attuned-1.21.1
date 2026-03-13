@@ -15,6 +15,7 @@ public class AttunedDynamicRegistryGen extends FabricDynamicRegistryProvider {
 
     protected void configure(RegistryWrapper.WrapperLookup wrapperLookup, Entries entries) {
         entries.addAll(wrapperLookup.getWrapperOrThrow(RegistryKeys.ENCHANTMENT));
+        entries.addAll(wrapperLookup.getWrapperOrThrow(RegistryKeys.DAMAGE_TYPE));
     }
 
     public String getName() {

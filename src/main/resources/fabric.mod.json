@@ -23,6 +23,9 @@
     ],
     "fabric-datagen": [
       "net.chemthunder.attuned.data.AttunedDataGen"
+    ],
+    "cardinal-components": [
+      "net.chemthunder.attuned.impl.cca.AttunedComponents"
     ]
   },
   "mixins": [
@@ -33,5 +36,12 @@
     "minecraft": "~1.21.1",
     "java": ">=21",
     "fabric-api": "*"
+  },
+
+  "custom": {
+    "cardinal-components": [
+      "attuned:tuning_fork_shockwave",
+      "attuned:tuning_fork_symphony"
+    ]
   }
 }

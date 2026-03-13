@@ -10,6 +10,7 @@ public interface AttunedEnchantmentEffects {
 
     ComponentType<Unit> SHOCKWAVE = ENCHANT_EFFECTS.register( "shockwave", builder -> builder.codec(Unit.CODEC));
     ComponentType<Unit> SCREECH = ENCHANT_EFFECTS.register( "screech", builder -> builder.codec(Unit.CODEC));
+    ComponentType<Unit> DEATHSONG = ENCHANT_EFFECTS.register( "deathsong", builder -> builder.codec(Unit.CODEC));
 
     static void init() {
         //

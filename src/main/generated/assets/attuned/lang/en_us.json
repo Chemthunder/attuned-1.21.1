@@ -1,10 +1,15 @@
 {
   "block.attuned.ancillary": "Ancillary",
+  "death.attack.magnum_opus": "%1$s finished their magnum opus",
+  "death.attack.magnum_opus.item": "%1$s finished their magnum opus whilst fighting %2$s wielding %3$s",
+  "death.attack.magnum_opus.player": "%1$s finished their magnum opus whilst fighting %2$s",
   "effect.attuned.deafened": "Deafened",
   "enchantment.attuned.octave": "Octave",
   "enchantment.attuned.octave.desc": "Swaps the boost from blocking to a long-range dash in any direction.",
   "enchantment.attuned.shrill": "Shrill",
   "enchantment.attuned.shrill.desc": "Allows the user to release a large shockwave upon blocking a hit, deafening nearby enemies.",
+  "enchantment.attuned.symphony": "Symphony",
+  "enchantment.attuned.symphony.desc": "If the user dies while blocking, they will be kept alive for ten extra seconds. Upon running out of time, they will instantly die.",
   "item.attuned.ancillary_bit": "Ancillary Bit",
   "item.attuned.tuning_fork": "Tuning Fork"
 }

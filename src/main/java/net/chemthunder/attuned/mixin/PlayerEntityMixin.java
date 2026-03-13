@@ -33,37 +33,40 @@ public abstract class PlayerEntityMixin {
                 if (world instanceof ServerWorld serverWorld) {
                     if (player.isUsingItem()) {
                         if (!player.isCreative()) {
-                            if (!item.hasOctave(stack) && !item.hasShrill(stack)) {
-                                cir.setReturnValue(false);
+                            if (!player.getItemCooldownManager().isCoolingDown(item)) {
+                                if (!item.hasOctave(stack) && !item.hasShrill(stack) && !item.hasSymphony(stack)) {
+                                    cir.setReturnValue(false);
 
-                                item.attuned$tuningForkParry(player, living, world, stack);
-                            }
-
-                            if (item.hasShrill(stack)) {
-                                Box area = new Box(player.getBlockPos()).expand(7);
-                                List<LivingEntity> entities = world.getEntitiesByClass(LivingEntity.class, area, entity -> true);
-
-                                for (LivingEntity entity : entities) {
-                                    if (entity != player) {
-                                        entity.addStatusEffect(new StatusEffectInstance(AttunedStatusEffects.DEAFENED, 600));
-                                    }
+                                    item.attuned$tuningForkParry(player, living, world, stack);
                                 }
 
-                                serverWorld.spawnParticles(
-                                        new ShockwaveParticleEffect(
-                                                item.attuned$shockwaveColors(stack),
-                                                3,
-                                                Direction.Axis.Y
-                                        ),
-                                        player.getX() + 0.5f,
-                                        player.getY() + 0.5f,
-                                        player.getZ() + 0.5f,
-                                        1,
-                                        0, 0, 0,
-                                        0.1f
-                                );
+                                if (item.hasShrill(stack)) {
+                                    Box area = new Box(player.getBlockPos()).expand(7);
+                                    List<LivingEntity> entities = world.getEntitiesByClass(LivingEntity.class, area, entity -> true);
 
-                                player.getItemCooldownManager().set(item, 90);
+                                    for (LivingEntity entity : entities) {
+                                        if (entity != player) {
+                                            entity.addStatusEffect(new StatusEffectInstance(AttunedStatusEffects.DEAFENED, 600));
+                                            entity.setVelocity(0, 0, 0);
+                                        }
+                                    }
+
+                                    serverWorld.spawnParticles(
+                                            new ShockwaveParticleEffect(
+                                                    item.attuned$shockwaveColors(stack),
+                                                    3,
+                                                    Direction.Axis.Y
+                                            ),
+                                            player.getX() + 0.5f,
+                                            player.getY() + 0.5f,
+                                            player.getZ() + 0.5f,
+                                            1,
+                                            0, 0, 0,
+                                            0.1f
+                                    );
+
+                                    player.getItemCooldownManager().set(item, 90);
+                                }
                             }
                         }
                     }
@@ -71,4 +74,6 @@ public abstract class PlayerEntityMixin {
             }
         }
     }
+
+
 }
