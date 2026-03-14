@@ -1,11 +1,14 @@
 package net.chemthunder.attuned.mixin;
 
+import net.chemthunder.attuned.impl.cca.entity.TuningForkShockwaveComponent;
 import net.chemthunder.attuned.impl.cca.entity.TuningForkSymphonyComponent;
 import net.chemthunder.attuned.impl.index.data.AttunedDamageTypes;
 import net.chemthunder.attuned.impl.item.TuningForkItem;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.entity.damage.DamageSources;
+import net.minecraft.entity.damage.DamageTypes;
 import net.minecraft.entity.player.PlayerEntity;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -42,6 +45,19 @@ public abstract class LivingEntityMixin {
         if (living instanceof PlayerEntity player) {
             if (TuningForkSymphonyComponent.KEY.get(player).getSaviorTicks() > 0) {
                 if (!source.isOf(AttunedDamageTypes.MAGNUM_OPUS)) {
+                    cir.setReturnValue(false);
+                }
+            }
+        }
+    }
+
+    @Inject(method = "damage", at = @At("HEAD"), cancellable = true)
+    private void attuned$shockwaveNegateFallDmg(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
+        LivingEntity living = (LivingEntity) (Object) this;
+
+        if (living instanceof PlayerEntity player) {
+            if (TuningForkShockwaveComponent.KEY.get(player).getSaviorTicks() > 0) {
+                if (source.isOf(DamageTypes.FALL)) {
                     cir.setReturnValue(false);
                 }
             }
