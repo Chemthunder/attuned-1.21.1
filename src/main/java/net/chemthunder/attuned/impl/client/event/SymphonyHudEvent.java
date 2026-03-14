@@ -21,7 +21,7 @@ public class SymphonyHudEvent implements HudRenderCallback {
             if (sc.getSaviorTicks() > 0) {
                 drawContext.drawTextWithShadow(
                         client.textRenderer,
-                        Text.literal(sc.getSaviorTicks() + ""),
+                        Text.of(sc.getSaviorTicks() + ""),
                         drawContext.getScaledWindowWidth() / 2,
                         drawContext.getScaledWindowHeight() + 40,
                         0xff0056
