@@ -25,6 +25,6 @@ public class AncillaryBlockItem extends BlockItem implements ColorableItem {
     }
 
     public Text getName(ItemStack stack) {
-        return super.getName(stack).copy().withColor(endColor(stack));
+        return super.getName(stack).copy().withColor(0xFF424954);
     }
 }
