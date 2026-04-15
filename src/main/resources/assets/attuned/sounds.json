@@ -1,0 +1,52 @@
+{
+  "item.tuning_fork.impact": {
+    "subtitle": "sounds.attuned.tuning_fork_hit",
+    "sounds": [
+      "attuned:item/tuning_fork/hit"
+    ]
+  },
+  "item.tuning_fork.vibrate": {
+    "sounds": [
+      "attuned:item/tuning_fork/tune"
+    ]
+  },
+  "item.tuning_fork.resonate": {
+    "sounds": [
+      "attuned:item/tuning_fork/tune_dull"
+    ]
+  },
+  "item.tuning_fork.hit": {
+    "subtitle": "sounds.attuned.tuning_fork_hit",
+    "sounds": [
+      "attuned:item/tuning_fork/tune_hit"
+    ]
+  },
+  "item.tuning_fork.shockwave": {
+    "subtitle": "sounds.attuned.tuning_fork_shockwave",
+    "sounds": [
+      "attuned:item/tuning_fork/shockwave"
+    ]
+  },
+  "item.tuning_fork.octave": {
+    "subtitle": "sounds.attuned.tuning_fork_octave",
+    "sounds": [
+      "attuned:item/tuning_fork/octave"
+    ]
+  },
+  "item.tuning_fork.symphony": {
+    "subtitle": "sounds.attuned.tuning_fork_symphony",
+    "sounds": [
+      "attuned:item/tuning_fork/symphony"
+    ]
+  },
+  "item.tuning_fork.tick": {
+    "sounds": [
+      "attuned:item/tuning_fork/tick"
+    ]
+  },
+  "item.tuning_fork.magnum_opus": {
+    "sounds": [
+      "attuned:item/tuning_fork/magnum_opus"
+    ]
+  }
+}
