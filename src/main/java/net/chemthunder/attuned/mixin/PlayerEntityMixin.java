@@ -3,12 +3,14 @@ package net.chemthunder.attuned.mixin;
 import net.chemthunder.attuned.impl.client.particle.ShockwaveParticleEffect;
 import net.chemthunder.attuned.impl.index.AttunedStatusEffects;
 import net.chemthunder.attuned.impl.item.TuningForkItem;
+import net.chemthunder.attuned.impl.sound.AttunedSounds;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.sound.SoundCategory;
 import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
@@ -50,6 +52,7 @@ public abstract class PlayerEntityMixin {
                                             entity.setVelocity(0, 0, 0);
                                         }
                                     }
+                                    player.playSoundToPlayer(AttunedSounds.TUNING_FORK_SHOCKWAVE, SoundCategory.PLAYERS, 0.5f, (float) (player.getRandom().nextBetween(11,18) / 10.0f));
 
                                     serverWorld.spawnParticles(
                                             new ShockwaveParticleEffect(

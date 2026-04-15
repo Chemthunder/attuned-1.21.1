@@ -2,6 +2,7 @@ package net.chemthunder.attuned.impl;
 
 import net.acoyt.acornlib.api.ALib;
 import net.chemthunder.attuned.impl.index.*;
+import net.chemthunder.attuned.impl.sound.AttunedSounds;
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.util.Identifier;
 import org.slf4j.Logger;
@@ -19,6 +20,7 @@ public class Attuned implements ModInitializer {
         AttunedBlocks.init();
         AttunedParticles.init();
         AttunedStatusEffects.init();
+        AttunedSounds.init();
 
 		LOGGER.info("im tuning my fork");
 

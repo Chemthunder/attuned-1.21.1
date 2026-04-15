@@ -14,6 +14,7 @@ import net.chemthunder.attuned.impl.cca.entity.TuningForkSymphonyComponent;
 import net.chemthunder.attuned.impl.client.particle.ShockwaveParticleEffect;
 import net.chemthunder.attuned.impl.index.AttunedDataComponents;
 import net.chemthunder.attuned.impl.index.AttunedEnchantmentEffects;
+import net.chemthunder.attuned.impl.sound.AttunedSounds;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.client.render.model.json.ModelTransformationMode;
@@ -136,14 +137,10 @@ public class TuningForkItem extends Item implements ModelVaryingItem, CustomHitP
 
             if (context.getWorld().getBlockState(context.getBlockPos()).isOf(Blocks.SMITHING_TABLE)) {
                 var skin = AttunedDataComponents.SKIN;
-                int result = 0;
 
-                switch (stack.getOrDefault(skin, 0)) {
-                    case 0 -> result = 1;
-                    case 1 -> result = 2;
-                    case 2 -> result = 3;
-                    case 3 -> result = 0;
-                }
+
+                int current = stack.getOrDefault(skin, 0);
+                int result = (current + 1) % 4;
 
                 stack.set(skin, result);
                 player.stopUsingItem();
@@ -242,6 +239,18 @@ public class TuningForkItem extends Item implements ModelVaryingItem, CustomHitP
 
     public void playHitSound(PlayerEntity player, Entity target) {
         ItemStack stack = player.getMainHandStack();
+        player.playSound(AttunedSounds.TUNING_FORK_IMPACT, 0.42f, (player.getRandom().nextBetween(10,13) / 10.0f));
+        player.playSound(AttunedSounds.TUNING_FORK_VIBRATE, (float) (player.getRandom().nextBetween(3,10) / 20.0), (float) (0.89+player.getRandom().nextBetween(0,10) * 0.01));
+        if (!player.getWorld().isClient) {
+            (player.getWorld()).playSound(
+                    player,
+                    player.getBlockPos(),
+                    AttunedSounds.TUNING_FORK_RESONATE,
+                    SoundCategory.PLAYERS,
+                    .6f,
+                    0.88f
+            );
+        }
         player.playSound(attuned$specificSounds(stack), 1, (float) (1.0f + player.getRandom().nextGaussian() / 10.0f));
     }
 
@@ -296,7 +305,7 @@ public class TuningForkItem extends Item implements ModelVaryingItem, CustomHitP
                     0.0, 0.0, 0.0,
                     0.1
             );
-
+            player.playSoundToPlayer(AttunedSounds.TUNING_FORK_SHOCKWAVE,SoundCategory.PLAYERS, 0.5f, (player.getRandom().nextBetween(7,13) / 10.0f));
             player.playSoundToPlayer(attuned$specificSounds(stack),SoundCategory.PLAYERS, 1, (float) (1.0f + player.getRandom().nextGaussian() / 10.0f));
         }
     }
@@ -308,6 +317,7 @@ public class TuningForkItem extends Item implements ModelVaryingItem, CustomHitP
         if (source instanceof PlayerEntity targetPlayer) {
             targetPlayer.getItemCooldownManager().set(targetPlayer.getMainHandStack().getItem(), 40);
         }
+        player.playSoundToPlayer(AttunedSounds.TUNING_FORK_SYMPHONY,SoundCategory.MASTER, 10000f, 1f);
 
         TuningForkSymphonyComponent symphonyComponent = TuningForkSymphonyComponent.KEY.get(player);
 
@@ -350,11 +360,16 @@ public class TuningForkItem extends Item implements ModelVaryingItem, CustomHitP
                             player.setVelocity(player.getRotationVec(0).multiply((double) HELDTICKS / 14));
                             player.velocityModified = true;
 
+                            player.playSound(AttunedSounds.TUNING_FORK_OCTAVE,0.25f, (player.getRandom().nextBetween(8,15) / 10.0f));
+
                             serverWorld.spawnParticles(
                                     new ShockwaveParticleEffect(
                                             attuned$shockwaveColors(stack),
-                                            3,
-                                            Direction.Axis.Y
+                                            0.5f+HELDTICKS / 10f,
+                                            0,
+                                            270-player.getRotationClient().y,
+                                            360-player.getRotationClient().x
+
                                     ),
                                     player.getX(),
                                     player.getY() + 0.5f,

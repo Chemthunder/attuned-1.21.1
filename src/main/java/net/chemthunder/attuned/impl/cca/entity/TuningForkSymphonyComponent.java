@@ -3,6 +3,7 @@ package net.chemthunder.attuned.impl.cca.entity;
 import net.acoyt.acornlib.api.util.MiscUtils;
 import net.chemthunder.attuned.impl.Attuned;
 import net.chemthunder.attuned.impl.index.data.AttunedDamageTypes;
+import net.chemthunder.attuned.impl.sound.AttunedSounds;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.registry.RegistryWrapper;
@@ -25,9 +26,17 @@ public class TuningForkSymphonyComponent implements AutoSyncedComponent, CommonT
     }
 
     public void tick() {
+
+        if(saviorTicks%40==1){
+            player.playSound(AttunedSounds.TUNING_FORK_TICK, 1f,0.95f);
+        }
+        if(saviorTicks%40==21){
+            player.playSound(AttunedSounds.TUNING_FORK_TICK, 1f,1.0f);
+        }
         if (saviorTicks > 0) {
             saviorTicks--;
             if (saviorTicks == 0) {
+                player.playSound(AttunedSounds.TUNING_FORK_MAGNUM_OPUS, 1f,1f);
                 player.damage(player.getDamageSources().create(AttunedDamageTypes.MAGNUM_OPUS), player.getMaxHealth() * player.getMaxHealth() * 9);
                 sync();
             }
