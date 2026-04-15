@@ -29,6 +29,13 @@ public class AttunedLangGen extends FabricLanguageProvider {
         translationBuilder.add("enchantment.attuned.symphony", "Symphony");
         translationBuilder.add("enchantment.attuned.symphony.desc", "If the user dies while blocking, they will be kept alive for ten extra seconds. Upon running out of time, they will instantly die.");
 
+
+        translationBuilder.add("sounds.attuned.tuning_fork_hit", "Constructive interference");
+        translationBuilder.add("sounds.attuned.tuning_fork_shockwave", "Destructive interference");
+        translationBuilder.add("sounds.attuned.tuning_fork_octave", "Quindicesima");
+        translationBuilder.add("sounds.attuned.tuning_fork_shrill", "Forzando");
+        translationBuilder.add("sounds.attuned.tuning_fork_symphony", "Crescendo");
+
         registerDamageType(translationBuilder,
                 AttunedDamageTypes.MAGNUM_OPUS,
                 "%1$s finished their magnum opus",

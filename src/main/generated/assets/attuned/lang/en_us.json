@@ -11,5 +11,6 @@
   "enchantment.attuned.symphony": "Symphony",
   "enchantment.attuned.symphony.desc": "If the user dies while blocking, they will be kept alive for ten extra seconds. Upon running out of time, they will instantly die.",
   "item.attuned.ancillary_bit": "Ancillary Bit",
-  "item.attuned.tuning_fork": "Tuning Fork"
+  "item.attuned.tuning_fork": "Tuning Fork",
+  "sounds.attuned.tuning_fork_hit": "Pitch perfect pain"
 }
