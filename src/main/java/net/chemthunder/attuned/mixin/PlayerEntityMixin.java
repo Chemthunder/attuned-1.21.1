@@ -3,7 +3,7 @@ package net.chemthunder.attuned.mixin;
 import net.chemthunder.attuned.impl.client.particle.ShockwaveParticleEffect;
 import net.chemthunder.attuned.impl.index.AttunedStatusEffects;
 import net.chemthunder.attuned.impl.item.TuningForkItem;
-import net.chemthunder.attuned.impl.sound.AttunedSounds;
+import net.chemthunder.attuned.impl.index.AttunedSounds;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.effect.StatusEffectInstance;

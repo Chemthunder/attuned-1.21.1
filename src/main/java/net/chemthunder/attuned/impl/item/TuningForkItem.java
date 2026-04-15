@@ -14,7 +14,7 @@ import net.chemthunder.attuned.impl.cca.entity.TuningForkSymphonyComponent;
 import net.chemthunder.attuned.impl.client.particle.ShockwaveParticleEffect;
 import net.chemthunder.attuned.impl.index.AttunedDataComponents;
 import net.chemthunder.attuned.impl.index.AttunedEnchantmentEffects;
-import net.chemthunder.attuned.impl.sound.AttunedSounds;
+import net.chemthunder.attuned.impl.index.AttunedSounds;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.client.render.model.json.ModelTransformationMode;

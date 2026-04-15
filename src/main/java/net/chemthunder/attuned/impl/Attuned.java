@@ -2,7 +2,6 @@ package net.chemthunder.attuned.impl;
 
 import net.acoyt.acornlib.api.ALib;
 import net.chemthunder.attuned.impl.index.*;
-import net.chemthunder.attuned.impl.sound.AttunedSounds;
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.util.Identifier;
 import org.slf4j.Logger;

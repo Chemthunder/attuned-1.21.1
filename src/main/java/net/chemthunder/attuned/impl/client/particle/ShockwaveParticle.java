@@ -36,7 +36,6 @@ public class ShockwaveParticle extends SpriteBillboardParticle {
         this.color = PortingUtils.toVector(effect.color());
     }
 
-    @Override
     public void method_60373(VertexConsumer buffer, Camera camera, Quaternionf ignored, float ticks) {
         this.setSpriteForAge(this.spriteWithAge);
         this.setColor(this.color.x, this.color.y, this.color.z);
@@ -76,12 +75,10 @@ public class ShockwaveParticle extends SpriteBillboardParticle {
         buffer.vertex(verts[0].x(), verts[0].y(), verts[0].z()).texture(u1, v1).color(this.red, this.green, this.blue, this.alpha).light(light);
     }
 
-    @Override
     public int getBrightness(float tint) {
         return 240;
     }
 
-    @Override
     public ParticleTextureSheet getType() {
         return ParticleTextureSheet.PARTICLE_SHEET_TRANSLUCENT;
     }

@@ -55,7 +55,6 @@ public record ShockwaveParticleEffect(int color, float size, Vector3f rotation) 
         });
     }
 
-    @Override
     public ParticleType<?> getType() {
         return AttunedParticles.SHOCKWAVE;
     }

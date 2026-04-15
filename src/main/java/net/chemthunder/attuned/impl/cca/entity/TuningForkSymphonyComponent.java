@@ -2,8 +2,8 @@ package net.chemthunder.attuned.impl.cca.entity;
 
 import net.acoyt.acornlib.api.util.MiscUtils;
 import net.chemthunder.attuned.impl.Attuned;
+import net.chemthunder.attuned.impl.index.AttunedSounds;
 import net.chemthunder.attuned.impl.index.data.AttunedDamageTypes;
-import net.chemthunder.attuned.impl.sound.AttunedSounds;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.registry.RegistryWrapper;
